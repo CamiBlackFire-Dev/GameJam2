@@ -161,8 +161,8 @@ GameObject:
   - component: {fileID: 372933084}
   - component: {fileID: 372933083}
   - component: {fileID: 372933082}
-  - component: {fileID: 372933081}
   - component: {fileID: 372933085}
+  - component: {fileID: 372933081}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6816f51ed16654bafb45e230e2ab46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 8
-  jumpForce: 12
+  moveSpeed: 5
+  jumpForce: 8
   jumpCutMultiplier: 0.5
   groundCheck: {fileID: 38395540}
   groundCheckRadius: 0.5

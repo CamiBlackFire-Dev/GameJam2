@@ -6,17 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 8f;
-    
+
     [Header("Jump Settings")]
     public float jumpForce = 12f;
     [Range(0f, 1f)]
     public float jumpCutMultiplier = 0.5f;
-    
+
     [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
-    
+
     [Header("Input Actions")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Feel")]
     public float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
-    
+
     public float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            
+
             jumpBufferCounter = 0f;
             coyoteTimeCounter = 0f;
         }
