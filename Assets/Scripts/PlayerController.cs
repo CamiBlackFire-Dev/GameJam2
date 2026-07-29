@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private bool isJumpPressed;
+    private bool isFacingRight = true;
 
     [Header("Game Feel")]
     public float coyoteTime = 0.15f;
@@ -152,6 +153,23 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+
+        if (moveInput.x > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (moveInput.x < 0 && isFacingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 
     private void OnDrawGizmosSelected()
