@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b9693caacdc10140ba8200f30869edb
-      internalID: 2141486260
+      spriteID: fcd968580e8a4f746b70c013f9ba1f78
+      internalID: 1242747106
       vertices: []
       indices: 
       edges: []
@@ -198,8 +198,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 013ac28ea6341e448b6b7100f57241ad
-      internalID: -1588556771
+      spriteID: ba526f89723c62646b5c1982c6e630a7
+      internalID: -271023574
       vertices: []
       indices: 
       edges: []
@@ -220,8 +220,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ed46ae8c3799d6429cc0a00d63dffd0
-      internalID: -2024928267
+      spriteID: 502c4b8516b7b084ebd33e828442c316
+      internalID: 641016910
       vertices: []
       indices: 
       edges: []
@@ -230,7 +230,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: da86137cdd84581459ac9b10c5d82599
+    spriteID: 791cf602f05ee0946b883a10ccb0522b
     internalID: 0
     vertices: []
     indices: 
@@ -243,9 +243,9 @@ TextureImporter:
         value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       "Animaci\xF3n correr_0": -25957318454793238
-      "Animaci\xF3n correr_1": 2141486260
-      "Animaci\xF3n correr_2": -1588556771
-      "Animaci\xF3n correr_3": -2024928267
+      "Animaci\xF3n correr_1": 1242747106
+      "Animaci\xF3n correr_2": -271023574
+      "Animaci\xF3n correr_3": 641016910
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

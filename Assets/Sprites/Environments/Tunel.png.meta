@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 925bc2024b545c749ab79e0a1c7df87d
+guid: 8a1daf6a687cd3d42b77be45e51e2767
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2206554088779750450
-    second: "Animaci\xF3n salto_0"
-  - first:
-      213: 612985161707514172
-    second: "Animaci\xF3n salto_1"
+      213: 4234950460683711481
+    second: Tunel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,111 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Animaci\xF3n salto_0"
+      name: Tunel_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 47
         width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23c176fb0414f9e10800000000000000
-      internalID: 2206554088779750450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Animaci\xF3n salto_1"
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c396920c1c2c18800800000000000000
-      internalID: 612985161707514172
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Animaci\xF3n salto_2"
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7cf967d1cae9fdc468d1b2225c10c679
-      internalID: 598104364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Animaci\xF3n salto_3"
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69bf0c2079d647a4bad0192cce683881
-      internalID: -860492502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Animaci\xF3n salto_4"
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcd14a0c04b331e46a95015606d9488d
-      internalID: 146181879
+      spriteID: 9f3fd6a910195ca30800000000000000
+      internalID: 4234950460683711481
       vertices: []
       indices: 
       edges: []
@@ -255,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fbbb47aede755c7429902c5d8052b1f9
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -263,15 +172,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      "Animaci\xF3n salto_0": 2206554088779750450
-      "Animaci\xF3n salto_1": 612985161707514172
-      "Animaci\xF3n salto_2": 598104364
-      "Animaci\xF3n salto_3": -860492502
-      "Animaci\xF3n salto_4": 146181879
+      Tunel_0: 4234950460683711481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

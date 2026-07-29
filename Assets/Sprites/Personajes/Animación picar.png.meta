@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -201,8 +201,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 392dcd319f6416242ac8bdeffee96190
-      internalID: -1323959829
+      spriteID: c6017eeddd609e844922abca5211c30c
+      internalID: -2092282560
       vertices: []
       indices: 
       edges: []
@@ -223,8 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0426436335a8c94fb366f3e4e35dfe7
-      internalID: 1063138760
+      spriteID: ca4b2c751457a6a4887c351a59ebcdcb
+      internalID: 1358666376
       vertices: []
       indices: 
       edges: []
@@ -245,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c53a2f28baa679f4fa969966d0bec22d
-      internalID: 1237163241
+      spriteID: 1801c0d735d788f439b14c9b735571eb
+      internalID: 1741278694
       vertices: []
       indices: 
       edges: []
@@ -255,7 +255,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 029b53d71f15d114e82f72b905784435
+    spriteID: a4d3b9878afca114dafbcab3332be148
     internalID: 0
     vertices: []
     indices: 
@@ -269,9 +269,9 @@ TextureImporter:
     nameFileIdTable:
       "Animaci\xF3n picar_0": -1855279770117563377
       "Animaci\xF3n picar_1": 2620012514126541950
-      "Animaci\xF3n picar_2": -1323959829
-      "Animaci\xF3n picar_3": 1063138760
-      "Animaci\xF3n picar_4": 1237163241
+      "Animaci\xF3n picar_2": -2092282560
+      "Animaci\xF3n picar_3": 1358666376
+      "Animaci\xF3n picar_4": 1741278694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
