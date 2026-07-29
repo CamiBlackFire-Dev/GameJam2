@@ -1335,7 +1335,6 @@ MonoBehaviour:
   cronometer: {fileID: 976454228}
   seconds: 120
   actualScore: 0
-  actualPlayer: {fileID: 1641618142}
 --- !u!4 &1107537529
 Transform:
   m_ObjectHideFlags: 0

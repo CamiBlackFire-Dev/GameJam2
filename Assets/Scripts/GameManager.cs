@@ -6,13 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI score, cronometer;
     public float seconds, actualScore;
-    void Start()
-    {
 
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (seconds > 0)

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,10 @@ public class PlayerInteraction : MonoBehaviour
     public ObjectInteraction interaction;
     public GameManager gameManager;
 
+    private void Awake()
+    {
+        gameManager.GetComponent<GameManager>();
+    }
 
     void Update()
     {
@@ -46,7 +51,6 @@ public class PlayerInteraction : MonoBehaviour
         isInteract = true;
         interactionTag = collision.tag;
         interaction = collision.GetComponent<ObjectInteraction>();
-        gameManager = collision.GetComponent<GameManager>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
