@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private bool isGrounded;
     private bool isJumping;
+    private bool isJumpPressed;
 
     [Header("Game Feel")]
     public float coyoteTime = 0.15f;
@@ -80,14 +81,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
+        isJumpPressed = true;
         jumpBufferCounter = jumpBufferTime;
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
-        if (rb.linearVelocity.y > 0 && !isGrounded)
+        isJumpPressed = false;
+
+        if (rb.linearVelocity.y > 0 && isJumping)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
+            isJumping = false;
             coyoteTimeCounter = 0f;
         }
     }
@@ -112,6 +117,11 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+
+            if (rb.linearVelocity.y <= 0f)
+            {
+                isJumping = false;
+            }
         }
         else
         {
@@ -125,7 +135,14 @@ public class PlayerController : MonoBehaviour
 
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            isJumping = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            if (!isJumpPressed)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * jumpCutMultiplier);
+                isJumping = false;
+            }
 
             jumpBufferCounter = 0f;
             coyoteTimeCounter = 0f;
