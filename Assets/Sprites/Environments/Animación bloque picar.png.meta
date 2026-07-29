@@ -169,12 +169,12 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_0"
       rect:
         serializedVersion: 2
-        x: 31
+        x: 0
         y: 0
-        width: 194
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_1"
       rect:
         serializedVersion: 2
-        x: 287
+        x: 256
         y: 0
-        width: 194
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_2"
       rect:
         serializedVersion: 2
-        x: 543
+        x: 512
         y: 0
-        width: 194
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -235,12 +235,12 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_3"
       rect:
         serializedVersion: 2
-        x: 799
+        x: 768
         y: 0
-        width: 194
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -257,20 +257,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_4"
       rect:
         serializedVersion: 2
-        x: 1055
+        x: 1024
         y: 0
-        width: 194
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ea5b9568f18402f20800000000000000
-      internalID: 3395793419272566190
+      spriteID: f3e86d98a1d690940bee1ee3df3ed9b8
+      internalID: 1520811548
       vertices: []
       indices: 
       edges: []
@@ -279,20 +279,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_5"
       rect:
         serializedVersion: 2
-        x: 1311
+        x: 1280
         y: 0
-        width: 194
-        height: 161
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ce35c4dfff31be890800000000000000
-      internalID: -7427821170230275092
+      spriteID: 5435776e007de2e4981eb4c5508c2327
+      internalID: -1666075343
       vertices: []
       indices: 
       edges: []
@@ -301,20 +301,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_6"
       rect:
         serializedVersion: 2
-        x: 1567
+        x: 1536
         y: 0
-        width: 194
-        height: 161
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4fbe71e7ac9674f0800000000000000
-      internalID: -831304836346626230
+      spriteID: d6a2bbe4283a94c47bff6d39f7905146
+      internalID: -683819097
       vertices: []
       indices: 
       edges: []
@@ -323,20 +323,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_7"
       rect:
         serializedVersion: 2
-        x: 1823
+        x: 1792
         y: 0
-        width: 194
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 32bfe1ce22ad66d00800000000000000
-      internalID: 965699013642746659
+      spriteID: a3ae866fbd2db814aa50f233f8aa581a
+      internalID: -1997368260
       vertices: []
       indices: 
       edges: []
@@ -345,20 +345,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_8"
       rect:
         serializedVersion: 2
-        x: 2079
+        x: 2048
         y: 0
-        width: 178
-        height: 97
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a1c036c83b6f2a710800000000000000
-      internalID: 1703194860114349082
+      spriteID: 87922188fe4df3044a6c95adb98d4b91
+      internalID: -814637064
       vertices: []
       indices: 
       edges: []
@@ -367,20 +367,20 @@ TextureImporter:
       name: "Animaci\xF3n bloque picar_9"
       rect:
         serializedVersion: 2
-        x: 2335
+        x: 2304
         y: 0
-        width: 178
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a1259b61517da4540800000000000000
-      internalID: 4993039622469145114
+      spriteID: d30c124e63682c14fa5f6fb5bf51768d
+      internalID: 876270503
       vertices: []
       indices: 
       edges: []
@@ -389,7 +389,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 36bc282c72d687c448e91c83be6baca1
     internalID: 0
     vertices: []
     indices: 
@@ -397,18 +397,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       "Animaci\xF3n bloque picar_0": 1740841472908588447
       "Animaci\xF3n bloque picar_1": -8935263907957164577
       "Animaci\xF3n bloque picar_2": 8054050766794627676
       "Animaci\xF3n bloque picar_3": 337158350213217254
-      "Animaci\xF3n bloque picar_4": 3395793419272566190
-      "Animaci\xF3n bloque picar_5": -7427821170230275092
-      "Animaci\xF3n bloque picar_6": -831304836346626230
-      "Animaci\xF3n bloque picar_7": 965699013642746659
-      "Animaci\xF3n bloque picar_8": 1703194860114349082
-      "Animaci\xF3n bloque picar_9": 4993039622469145114
+      "Animaci\xF3n bloque picar_4": 1520811548
+      "Animaci\xF3n bloque picar_5": -1666075343
+      "Animaci\xF3n bloque picar_6": -683819097
+      "Animaci\xF3n bloque picar_7": -1997368260
+      "Animaci\xF3n bloque picar_8": -814637064
+      "Animaci\xF3n bloque picar_9": 876270503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
