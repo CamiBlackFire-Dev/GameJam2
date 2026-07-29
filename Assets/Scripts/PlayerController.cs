@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     [Header("Input Actions")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
+    public InputActionReference attackAction;
+
+    [Header("Attack Settings")]
+    public float attackRange = 2f;
+    public int attackDamage = 1;
+    public LayerMask destructibleLayer;
 
     private Rigidbody2D rb;
 
@@ -56,6 +62,12 @@ public class PlayerController : MonoBehaviour
             jumpAction.action.performed += OnJump;
             jumpAction.action.canceled += OnJumpCanceled;
         }
+
+        if (attackAction != null)
+        {
+            attackAction.action.Enable();
+            attackAction.action.performed += OnAttack;
+        }
     }
 
     private void OnDisable()
@@ -72,6 +84,12 @@ public class PlayerController : MonoBehaviour
             jumpAction.action.performed -= OnJump;
             jumpAction.action.canceled -= OnJumpCanceled;
             jumpAction.action.Disable();
+        }
+
+        if (attackAction != null)
+        {
+            attackAction.action.performed -= OnAttack;
+            attackAction.action.Disable();
         }
     }
 
@@ -95,6 +113,33 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
             isJumping = false;
             coyoteTimeCounter = 0f;
+        }
+    }
+
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        if (Camera.main == null) return;
+
+        Vector2 mouseScreenPos = Pointer.current.position.ReadValue();
+        Vector3 screenPosConZ = new Vector3(mouseScreenPos.x, mouseScreenPos.y, Mathf.Abs(Camera.main.transform.position.z));
+        Vector3 mouseWorldPos3D = Camera.main.ScreenToWorldPoint(screenPosConZ);
+        Vector2 mouseWorldPos = new Vector2(mouseWorldPos3D.x, mouseWorldPos3D.y);
+
+        float distanceToMouse = Vector2.Distance(transform.position, mouseWorldPos);
+
+        if (distanceToMouse <= attackRange)
+        {
+            Collider2D hit = Physics2D.OverlapCircle(mouseWorldPos, 0.1f, destructibleLayer);
+
+            if (hit != null)
+            {
+                Destructible destructible = hit.GetComponent<Destructible>();
+
+                if (destructible != null)
+                {
+                    destructible.TakeDamage(attackDamage);
+                }
+            }
         }
     }
 
@@ -179,5 +224,8 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
