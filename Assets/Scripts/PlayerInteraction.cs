@@ -3,38 +3,39 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private bool isInteract;
-    [SerializeField] private string interactionTag;
+    public bool isInteract;
+    public string interactionTag;
+    public int pressButton;
+    public ObjectInteraction interaction;
+    public GameManager gameManager;
 
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
-        Interact();
-       
+        Interact();      
     }
 
     void Interact()
     {
         if (isInteract && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            InteractionTypes(interactionTag);
+            pressButton ++;
+            InteractionTypes(interactionTag, pressButton);
         }
     }
 
-    void InteractionTypes(string tag)
+    void InteractionTypes(string tag, int press)
     {
         switch (tag)
         {
             case "Persona":
+                interaction.CivilianInteraction();
+                gameManager.PlayerScore();
                 print("Rescatado");
                 break;
 
             case "Obstaculo":
+                interaction.DebrisInteraction(press);
                 print("Despejado");
                 break;
         }
@@ -44,11 +45,14 @@ public class PlayerInteraction : MonoBehaviour
     {       
         isInteract = true;
         interactionTag = collision.tag;
+        interaction = collision.GetComponent<ObjectInteraction>();
+        gameManager = collision.GetComponent<GameManager>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         isInteract = false;
         interactionTag = null;
+        pressButton = 0;
     }
 }
