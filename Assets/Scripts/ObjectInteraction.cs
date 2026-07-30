@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectInteraction : MonoBehaviour
 {
@@ -12,5 +14,10 @@ public class ObjectInteraction : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void FinalScene()
+    {
+        SceneManager.LoadScene("Final");
     }
 }
