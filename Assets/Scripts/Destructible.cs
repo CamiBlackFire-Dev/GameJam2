@@ -1,64 +1,60 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Script para cualquier objeto que pueda ser destruido por el jugador (muros, pisos, cajas).
-/// </summary>
+// Se lo ponemos a las cajas, paredes o pisos que el jugador puede romper
 public class Destructible : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [Tooltip("Cantidad de golpes necesarios para destruir el objeto.")]
+    [Header("Configuración de Vida")]
+    [Tooltip("¿Cuántos golpes aguanta antes de romperse?")]
     public int maxHealth = 1;
     private int currentHealth;
 
-    [Header("Visual & Audio Effects")]
-    [Tooltip("Prefab de partículas a instanciar cuando el objeto se destruye (opcional).")]
+    [Header("Efectos")]
+    [Tooltip("Aquí ponemos las partículas o explosión cuando se rompe")]
     public GameObject destructionVFX;
 
-    [Header("Events")]
-    [Tooltip("Eventos que se disparan al recibir daño (ej. reproducir un sonido de golpe).")]
+    [Header("Eventos especiales")]
+    [Tooltip("Cosas que pasan cuando le pegan (como reproducir un sonido)")]
     public UnityEvent OnTakeDamage;
-    [Tooltip("Eventos que se disparan justo antes de destruirse (ej. dar puntos, sonido de ruptura).")]
+    [Tooltip("Cosas que pasan justo antes de desaparecer")]
     public UnityEvent OnDestroyed;
 
     private void Start()
     {
-        // Inicializar la vida al máximo al empezar
+        // Al inicio, le damos toda la vida
         currentHealth = maxHealth;
     }
 
-    /// <summary>
-    /// Reduce la vida del objeto y lo destruye si llega a 0.
-    /// </summary>
+    // Esta función la llamamos desde el script del jugador cuando le damos un golpe
     public void TakeDamage(int damage = 1)
     {
+        // Si ya está muerto, no hacemos nada
         if (currentHealth <= 0) return;
 
+        // Le quitamos vida y avisamos que recibió daño
         currentHealth -= damage;
         OnTakeDamage?.Invoke();
 
-        // Si la vida se agota, procedemos a romper el objeto
+        // Si se quedó sin vida, lo rompemos
         if (currentHealth <= 0)
         {
             Break();
         }
     }
 
-    /// <summary>
-    /// Lógica de destrucción del objeto.
-    /// </summary>
+    // Lo que pasa cuando se rompe por completo
     private void Break()
     {
-        // Disparar eventos configurados en el inspector
+        // Disparamos los eventos (sonidos, puntos, etc.)
         OnDestroyed?.Invoke();
 
-        // Crear efecto visual si hay uno asignado
+        // Si le pusimos un efecto de partículas, lo creamos justo donde está el objeto
         if (destructionVFX != null)
         {
             Instantiate(destructionVFX, transform.position, Quaternion.identity);
         }
 
-        // Eliminar el objeto de la escena
+        // Borramos el objeto del juego
         Destroy(gameObject);
     }
 }

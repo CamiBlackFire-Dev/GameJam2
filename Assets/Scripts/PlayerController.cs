@@ -1,63 +1,58 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Script principal para controlar al jugador. 
-/// Maneja movimiento, salto (con Game Feel), animaciones y sistema de ataque.
-/// </summary>
+// Nuestro script principal. Maneja las físicas, los saltos y el ataque del minero.
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Movimiento")]
     public float moveSpeed = 8f;
 
-    [Header("Jump Settings")]
+    [Header("Salto")]
     public float jumpForce = 12f;
     [Range(0f, 1f)]
-    [Tooltip("Multiplicador aplicado a la velocidad vertical si el jugador suelta el botón de salto antes de tiempo.")]
+    [Tooltip("Si sueltas el botón rápido, el salto se corta a la mitad")]
     public float jumpCutMultiplier = 0.5f;
 
-    [Header("Ground Check")]
-    [Tooltip("Objeto vacío colocado exactamente en los pies del jugador.")]
+    [Header("Suelo")]
+    [Tooltip("Un puntito vacío en los pies del jugador para saber si toca el piso")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
-    [Tooltip("Capa que define qué objetos cuentan como suelo.")]
+    [Tooltip("¿Qué cosas son piso?")]
     public LayerMask groundLayer;
 
-    [Header("Input Actions")]
+    [Header("Controles (Input System)")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
     public InputActionReference attackAction;
 
-    [Header("Attack Settings")]
-    [Tooltip("Radio máximo de alcance para hacer clic y romper objetos.")]
+    [Header("Ataque")]
+    [Tooltip("Hasta dónde llega el brazo para picar cosas")]
     public float attackRange = 2f;
-    [Tooltip("Desfase para centrar el área de ataque en el pecho/cabeza del jugador en lugar de los pies.")]
+    [Tooltip("Subimos un poco el centro del ataque para que no salga desde los pies")]
     public Vector2 attackOffset = new Vector2(0f, 0.5f);
     public int attackDamage = 1;
-    [Tooltip("Tiempo en segundos que se reproducirá la animación de ataque antes de volver a correr/idle.")]
+    [Tooltip("Tiempo que tarda la animación de ataque")]
     public float attackAnimDuration = 0.3f;
     public LayerMask destructibleLayer;
 
-    /// <summary>
-    /// Calcula desde dónde nace realmente el ataque sumando el Offset a la posición base del jugador.
-    /// </summary>
+    // Esta función nos da la posición del pecho/cabeza del jugador para calcular mejor el ataque
     public Vector2 GetAttackCenter()
     {
         return (Vector2)transform.position + attackOffset;
     }
 
-    [Header("Animations")]
+    [Header("Nombres de las animaciones")]
     public string idleAnim = "Player_Idle";
     public string runAnim = "Player_Run";
     public string jumpAnim = "Player_Jump";
     public string attackAnim = "Player_Attack";
 
-    // --- COMPONENTES ---
+    // Componentes que necesitamos
     private Rigidbody2D rb;
     private Animator anim;
 
-    // --- VARIABLES DE ESTADO ---
+    // Cosas internas que usamos para saber qué está haciendo el jugador
     private string currentState;
     private float attackTimer;
     private Vector2 moveInput;
@@ -66,12 +61,12 @@ public class PlayerController : MonoBehaviour
     private bool isJumpPressed;
     private bool isFacingRight = true;
 
-    [Header("Game Feel")]
-    [Tooltip("Tiempo de gracia para poder saltar tras caerse por el borde de una plataforma.")]
+    [Header("Mejoras de jugabilidad (Game Feel)")]
+    [Tooltip("Le damos un tiempito extra para saltar aunque ya se haya caído de la plataforma")]
     public float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
 
-    [Tooltip("Tiempo que se 'recuerda' la pulsación del botón salto antes de tocar el suelo.")]
+    [Tooltip("Si aprietas salto justo antes de tocar el piso, el juego te lo guarda y saltas apenas tocas")]
     public float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
@@ -81,7 +76,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // --- SUSCRIPCIÓN A EVENTOS DEL INPUT SYSTEM (NECESARIO EN UNITY 6) ---
+    // Prendemos los controles nuevos de Unity
     private void OnEnable()
     {
         if (moveAction != null)
@@ -105,6 +100,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Apagamos los controles si el jugador se desactiva
     private void OnDisable()
     {
         if (moveAction != null)
@@ -128,23 +124,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // --- CALLBACKS DEL INPUT ---
+    // Cuando tocamos las flechas o el joystick
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
 
+    // Cuando apretamos el botón de salto
     private void OnJump(InputAction.CallbackContext context)
     {
         isJumpPressed = true;
-        jumpBufferCounter = jumpBufferTime; // Iniciar el buffer de salto
+        jumpBufferCounter = jumpBufferTime; // Guardamos el salto por unos milisegundos
     }
 
+    // Cuando soltamos el botón de salto
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
         isJumpPressed = false;
 
-        // Si el jugador suelta el botón mientras sube, cortamos la velocidad para un salto cortito
+        // Si estábamos subiendo, frenamos un poco para hacer un salto cortito
         if (rb.linearVelocity.y > 0 && isJumping)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
@@ -153,28 +151,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Cuando hacemos clic para picar
     private void OnAttack(InputAction.CallbackContext context)
     {
         if (Camera.main == null) return;
 
-        // Iniciar temporizador para evitar que la animación de idle/correr interrumpa el ataque
+        // Arrancamos el cronómetro de la animación para que no se corte
         attackTimer = attackAnimDuration;
 
-        // 1. Obtener la posición del ratón en la pantalla y convertirla a coordenadas del mundo 2D
+        // Pasamos el clic de la pantalla al mundo 2D
         Vector2 mouseScreenPos = Pointer.current.position.ReadValue();
         Vector3 screenPosConZ = new Vector3(mouseScreenPos.x, mouseScreenPos.y, Mathf.Abs(Camera.main.transform.position.z));
         Vector3 mouseWorldPos3D = Camera.main.ScreenToWorldPoint(screenPosConZ);
         Vector2 mouseWorldPos = new Vector2(mouseWorldPos3D.x, mouseWorldPos3D.y);
 
-        // 2. Validar si el clic está dentro de nuestro radio máximo de ataque
+        // Nos fijamos si el clic fue cerca nuestro
         float distanceToMouse = Vector2.Distance(GetAttackCenter(), mouseWorldPos);
         if (distanceToMouse <= attackRange)
         {
-            // 3. Detectar colliders en el punto exacto del ratón que pertenezcan a la capa Destructible
+            // Buscamos si hay un bloque en la capa destructible justo donde hicimos clic
             Collider2D hit = Physics2D.OverlapCircle(mouseWorldPos, 0.1f, destructibleLayer);
 
             if (hit != null)
             {
+                // Si encontramos algo, le decimos que se rompa
                 Destructible destructible = hit.GetComponent<Destructible>();
                 if (destructible != null)
                 {
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // --- CICLO PRINCIPAL (Lógica y Físicas) ---
+    // El Update normal corre todo el tiempo (bueno para lógica e inputs)
     private void Update()
     {
         CheckGrounded();
@@ -192,12 +192,13 @@ public class PlayerController : MonoBehaviour
         UpdateAnimations();
     }
 
+    // El FixedUpdate es mejor para aplicar fuerzas y cosas de físicas
     private void FixedUpdate()
     {
         ApplyMovement();
     }
 
-    // --- DETECCIÓN DE SUELO Y COYOTE TIME ---
+    // Revisamos si estamos tocando el piso
     private void CheckGrounded()
     {
         if (groundCheck == null) return;
@@ -206,9 +207,10 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            coyoteTimeCounter = coyoteTime; // Renovar coyote time al pisar el suelo
+            // Si tocamos piso, tenemos coyote time al máximo
+            coyoteTimeCounter = coyoteTime;
 
-            // Si tocamos suelo y ya no vamos hacia arriba, finaliza el estado de salto
+            // Ya caímos, así que no estamos saltando
             if (rb.linearVelocity.y <= 0f)
             {
                 isJumping = false;
@@ -216,41 +218,41 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            coyoteTimeCounter -= Time.deltaTime; // Consumir coyote time en el aire
+            // Si estamos en el aire, vamos restando el tiempito extra de salto
+            coyoteTimeCounter -= Time.deltaTime;
         }
     }
 
-    // --- LÓGICA DE SALTO (CON JUMP BUFFERING) ---
+    // Lógica para saltar
     private void HandleJumpLogic()
     {
-        jumpBufferCounter -= Time.deltaTime; // Consumir tiempo del buffer
+        jumpBufferCounter -= Time.deltaTime; // Restamos tiempo de nuestro salto guardado
 
-        // Solo saltamos si el jugador pulsó hace muy poco (buffer) y está tocando suelo o en coyote time
+        // Si tenemos un salto guardado Y además estamos en el piso (o caímos hace nada)
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             isJumping = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-            // Si el jugador soltó el botón *exactamente* en el mismo frame que se procesó el salto
+            // Evitamos hacer un súper salto por accidente
             if (!isJumpPressed)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * jumpCutMultiplier);
                 isJumping = false;
             }
 
-            // Consumir contadores para evitar hacer doble salto accidental
+            // Gastamos los contadores para no saltar doble
             jumpBufferCounter = 0f;
             coyoteTimeCounter = 0f;
         }
     }
 
-    // --- MOVIMIENTO HORIZONTAL ---
+    // Lógica de correr de lado a lado
     private void ApplyMovement()
     {
-        // Aplicar la velocidad horizontal del input manteniendo la vertical (gravedad) inalterada
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
 
-        // Voltear (Flip) al jugador dependiendo de si va a la derecha o izquierda
+        // Si nos movemos para la derecha pero miramos a la izquierda, nos damos vuelta
         if (moveInput.x > 0 && !isFacingRight)
         {
             Flip();
@@ -261,20 +263,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Da vuelta el dibujito del jugador
     private void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
-        localScale.x *= -1f; // Invertir el eje X rota visualmente a todos los hijos (sprites, colliders extra)
+        localScale.x *= -1f; // Multiplicar por -1 voltea todo el objeto
         transform.localScale = localScale;
     }
 
-    // --- SISTEMA DE ANIMACIÓN (Máquina de Estados Simple por Código) ---
+    // Cambia la animación según lo que estemos haciendo
     private void UpdateAnimations()
     {
         if (anim == null) return;
 
-        // Prioridad 1: Animación de ataque (bloquea a las demás hasta que se consuma su temporizador)
+        // Si estamos picando, no hacemos otra animación hasta que termine
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
@@ -282,28 +285,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Prioridad 2: Salto o Caída (cuando no tocamos el suelo)
+        // Si estamos en el aire (saltando o cayendo)
         if (!isGrounded)
         {
             ChangeAnimationState(jumpAnim);
             return;
         }
 
-        // Prioridad 3: Movimiento y Reposo en el suelo
+        // Si nos estamos moviendo de verdad (y no quieticos)
         if (Mathf.Abs(moveInput.x) > 0.1f)
         {
             ChangeAnimationState(runAnim);
         }
         else
         {
-            ChangeAnimationState(idleAnim);
+            ChangeAnimationState(idleAnim); // Estamos quietos y aburridos
         }
     }
 
-    /// <summary>
-    /// Cambia la animación actual solo si es distinta a la que ya se está reproduciendo.
-    /// Esto evita que la animación se reinicie continuamente desde el frame 0.
-    /// </summary>
+    // Solo reproduce la animación nueva si no es la misma que ya estaba corriendo
     private void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
@@ -312,18 +312,16 @@ public class PlayerController : MonoBehaviour
         currentState = newState;
     }
 
-    // --- DIBUJO DE AYUDAS VISUALES EN EL EDITOR (Gizmos) ---
+    // Dibujamos unos círculos de guía para que nos sea fácil configurarlo en Unity
     private void OnDrawGizmosSelected()
     {
-        // Dibujar el área de detección de suelo
         if (groundCheck != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius); // El circulo de los pies
         }
 
-        // Dibujar el rango de ataque con su offset
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GetAttackCenter(), attackRange);
+        Gizmos.DrawWireSphere(GetAttackCenter(), attackRange); // El círculo grande del alcance
     }
 }

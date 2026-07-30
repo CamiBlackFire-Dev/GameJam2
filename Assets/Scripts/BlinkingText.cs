@@ -1,13 +1,11 @@
 using UnityEngine;
-using TMPro; // Librería estándar de Unity para textos modernos
+using TMPro; // Usamos esto para los textos en HD de Unity
 
-/// <summary>
-/// Hace que un componente TextMeshPro parpadee activándose y desactivándose.
-/// </summary>
+// Script súper sencillo para hacer que el texto de ayuda parpadee
 [RequireComponent(typeof(TextMeshPro))]
 public class BlinkingText : MonoBehaviour
 {
-    [Tooltip("Tiempo en segundos que el texto estará visible u oculto antes de cambiar.")]
+    [Tooltip("Cada cuánto tiempo se apaga y se prende el texto (en segundos)")]
     public float blinkInterval = 0.5f;
 
     private TextMeshPro textMesh;
@@ -15,19 +13,20 @@ public class BlinkingText : MonoBehaviour
 
     private void Start()
     {
+        // Guardamos el componente de texto apenas arranca el juego
         textMesh = GetComponent<TextMeshPro>();
     }
 
     private void Update()
     {
-        // Aumentamos el temporizador con el tiempo real que pasa
+        // Vamos sumando el tiempo que pasa
         timer += Time.deltaTime;
 
-        // Si el temporizador supera el intervalo...
+        // Si el tiempo es mayor al intervalo que pusimos...
         if (timer >= blinkInterval)
         {
-            timer = 0f; // Reiniciamos el reloj
-            textMesh.enabled = !textMesh.enabled; // Invertimos la visibilidad del texto
+            timer = 0f; // Reiniciamos el cronómetro
+            textMesh.enabled = !textMesh.enabled; // Apagamos si estaba prendido, o prendemos si estaba apagado
         }
     }
 }
