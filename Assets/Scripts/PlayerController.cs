@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [Header("Animations")]
     public string idleAnim = "Player_Idle";
     public string runAnim = "Player_Run";
+    public string jumpAnim = "Player_Jump";
     public string attackAnim = "Player_Attack";
 
     // --- COMPONENTES ---
@@ -281,7 +282,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Prioridad 2: Movimiento y Reposo
+        // Prioridad 2: Salto o Caída (cuando no tocamos el suelo)
+        if (!isGrounded)
+        {
+            ChangeAnimationState(jumpAnim);
+            return;
+        }
+
+        // Prioridad 3: Movimiento y Reposo en el suelo
         if (Mathf.Abs(moveInput.x) > 0.1f)
         {
             ChangeAnimationState(runAnim);

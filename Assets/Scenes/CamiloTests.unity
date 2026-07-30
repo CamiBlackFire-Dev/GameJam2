@@ -507,6 +507,7 @@ MonoBehaviour:
   jumpAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attackAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attackRange: 0.93
+  attackOffset: {x: 0, y: 0.5}
   attackDamage: 1
   attackAnimDuration: 0.3
   destructibleLayer:
@@ -514,6 +515,7 @@ MonoBehaviour:
     m_Bits: 512
   idleAnim: Idle
   runAnim: Run
+  jumpAnim: Jump
   attackAnim: Attack
   coyoteTime: 0.15
   jumpBufferTime: 0.2
@@ -2083,14 +2085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00004dd03e07b041808c4ee39cefd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crosshair
-  player: {fileID: 372933084}
-  attackRange: 1.5
+  playerController: {fileID: 372933081}
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 512
-  normalColor: {r: 1, g: 0, b: 0, a: 1}
-  inRangeTargetColor: {r: 0, g: 1, b: 0.07007003, a: 1}
-  outOfRangeColor: {r: 1, g: 1, b: 1, a: 0.3}
+  normalColor: {r: 1, g: 0.16859877, b: 0, a: 1}
+  inRangeTargetColor: {r: 0, g: 1, b: 0.04351759, a: 1}
+  outOfRangeColor: {r: 1, g: 1, b: 1, a: 0.39215687}
 --- !u!212 &1997259582
 SpriteRenderer:
   serializedVersion: 2

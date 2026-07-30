@@ -14,11 +14,6 @@ public class Crosshair : MonoBehaviour
     [Tooltip("La misma capa (Layer) que configuraste para los objetos destructibles.")]
     public LayerMask destructibleLayer;
 
-    [Header("Colors")]
-    public Color normalColor = Color.white;
-    public Color inRangeTargetColor = Color.red;
-    public Color outOfRangeColor = new Color(1, 1, 1, 0.3f);
-
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -60,22 +55,16 @@ public class Crosshair : MonoBehaviour
         // 4. Calcular la distancia real entre el centro de ataque del jugador y la mira
         float distance = Vector2.Distance(playerController.GetAttackCenter(), transform.position);
 
-        // 5. Lógica de colores según la distancia y si tocamos algo destructible
-        if (distance > playerController.attackRange)
+        // 5. Por defecto, siempre usa el color rojo (fuera de rango o sin objetivo)
+        spriteRenderer.color = Color.red;
+
+        // Solo cambiamos a verde si estamos cerca Y tocamos algo destructible
+        if (distance <= playerController.attackRange)
         {
-            spriteRenderer.color = outOfRangeColor; // Muy lejos (fuera de rango)
-        }
-        else
-        {
-            // Usamos un pequeño círculo invisible (0.1f de radio) para detectar si tocamos un Destructible
             Collider2D hit = Physics2D.OverlapCircle(transform.position, 0.1f, destructibleLayer);
             if (hit != null)
             {
-                spriteRenderer.color = inRangeTargetColor; // En rango y apuntando a un objetivo
-            }
-            else
-            {
-                spriteRenderer.color = normalColor; // En rango pero apuntando al vacío
+                spriteRenderer.color = Color.green;
             }
         }
     }
