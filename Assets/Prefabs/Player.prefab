@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6816f51ed16654bafb45e230e2ab46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 4
-  jumpForce: 6
+  moveSpeed: 6
+  jumpForce: 4
   jumpCutMultiplier: 0.5
   groundCheck: {fileID: 7620231748416720987}
   groundCheckRadius: 0.26
@@ -223,19 +223,10 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attackAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  attackRange: 0.93
-  attackOffset: {x: 0, y: 0.5}
-  attackDamage: 1
-  attackAnimDuration: 0.3
+  attackRange: 1
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 512
-  idleAnim: Idle
-  runAnim: Run
-  jumpAnim: Jump
-  attackAnim: Attack
-  coyoteTime: 0.15
-  jumpBufferTime: 0.2
 --- !u!95 &9082116966721176127
 Animator:
   serializedVersion: 7
