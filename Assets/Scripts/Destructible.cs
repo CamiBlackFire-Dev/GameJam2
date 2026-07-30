@@ -5,9 +5,20 @@ using UnityEngine.Events;
 public class Destructible : MonoBehaviour
 {
     [Header("Configuración de Vida")]
-    [Tooltip("¿Cuántos golpes aguanta antes de romperse?")]
-    public int maxHealth = 1;
+    [Tooltip("¿Cuántos golpes aguanta antes de romperse? (Por defecto 3)")]
+    public int maxHealth = 3;
     private int currentHealth;
+
+    [Header("Animaciones (Opcional)")]
+    public Animator anim;
+    [Tooltip("Animación cuando pasa a 2 de vida")]
+    public string hitAnim1 = "Block_Hit1"; 
+    [Tooltip("Animación cuando pasa a 1 de vida")]
+    public string hitAnim2 = "Block_Hit2";
+    [Tooltip("Animación cuando se destruye por completo")]
+    public string destroyAnim = "Block_Destroy";
+    [Tooltip("¿Cuánto tiempo tarda en desaparecer para que se alcance a ver la animación de destrucción?")]
+    public float destroyDelay = 0.5f;
 
     [Header("Efectos")]
     [Tooltip("Aquí ponemos las partículas o explosión cuando se rompe")]
@@ -35,6 +46,23 @@ public class Destructible : MonoBehaviour
         currentHealth -= damage;
         OnTakeDamage?.Invoke();
 
+        // Reproducir la animación correspondiente según la vida que nos quede
+        if (anim != null)
+        {
+            if (currentHealth == 2)
+            {
+                anim.Play(hitAnim1);
+            }
+            else if (currentHealth == 1)
+            {
+                anim.Play(hitAnim2);
+            }
+            else if (currentHealth <= 0)
+            {
+                anim.Play(destroyAnim);
+            }
+        }
+
         // Si se quedó sin vida, lo rompemos
         if (currentHealth <= 0)
         {
@@ -55,6 +83,18 @@ public class Destructible : MonoBehaviour
         }
 
         // Borramos el objeto del juego
-        Destroy(gameObject);
+        // Si tenemos animaciones, esperamos un poquito para que se alcance a ver. Si no, lo borramos ya mismo.
+        if (anim != null)
+        {
+            // Apagamos el collider para que el jugador no pueda pegarle al "fantasma" del bloque
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
+            
+            Destroy(gameObject, destroyDelay);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
