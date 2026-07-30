@@ -10,9 +10,9 @@ public class UIManager : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float musicVolume = 0.5f;
 
     [Header("Efectos de Sonido (SFX)")]
-    [SerializeField] private AudioSource sfxSource; // AudioSource dedicado a los efectos de sonido
-    [SerializeField] private AudioClip hoverSound;   // Sonido al pasar el mouse por encima
-    [SerializeField] private AudioClip clickSound;   // Sonido al hacer clic
+    [SerializeField] private AudioSource sfxSource; 
+    [SerializeField] private AudioClip hoverSound;   
+    [SerializeField] private AudioClip clickSound;   
     
 
     private void Start()
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
         {
             audioSource.clip = menuMusic;
             audioSource.volume = musicVolume;
-            audioSource.loop = true; // Para que la canción se repita en bucle
+            audioSource.loop = true; 
             audioSource.Play();
         }
     }
@@ -35,26 +35,23 @@ public class UIManager : MonoBehaviour
     public void OpenTutorial()
     {
         PlayClickSound(); // Reproduce el clic
-        StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f)); // Espera 0.15s y cambia de escena
+        StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f)); 
     }
 
-    // 🔄 NUEVO: Método para el botón RETRY (Reiniciar Nivel)
+    
     public void RetryGame()
     {
-        PlayClickSound(); // Reproduce el sonido de clic
-        // Opción A: Cargar directamente la escena del nivel (Level1)
+        PlayClickSound(); 
         StartCoroutine(LoadSceneWithDelay("Level1", 0.9f)); 
 
-        // Opción B (Alternativa dinámica): Recargar la escena en la que se encuentra actualmente
         // string currentScene = SceneManager.GetActiveScene().name;
         // StartCoroutine(LoadSceneWithDelay(currentScene, 0.9f));
     }
 
-    // 🏠 NUEVO (Opcional): Método para volver al Menú Principal si agregas ese botón
     public void GoToMainMenu()
     {
         PlayClickSound();
-        StartCoroutine(LoadSceneWithDelay("Menu", 0.9f)); // Cambia "MainMenu" por el nombre de tu escena de menú
+        StartCoroutine(LoadSceneWithDelay("Menu", 0.9f)); 
     }
 
     private IEnumerator LoadSceneWithDelay(string sceneName, float delay)
@@ -79,12 +76,12 @@ public class UIManager : MonoBehaviour
             sfxSource.PlayOneShot(clickSound);
         }
     }
-    /* Método opcional y genérico si prefieres pasar el nombre desde el propio Inspector
+    /* 
     public void LoadSceneByName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }*/
-    // Este método lo puedes conectar a un Slider de UI si agregas un menú de opciones más adelante
+    
     public void SetVolume(float volume)
     {
         musicVolume = volume;
