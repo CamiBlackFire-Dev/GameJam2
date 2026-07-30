@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "JuegoGameJam2.slnx"
+    "dotnet.defaultSolution": "GameJam2.slnx"
 }
