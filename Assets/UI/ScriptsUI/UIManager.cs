@@ -38,6 +38,25 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f)); // Espera 0.15s y cambia de escena
     }
 
+    // 🔄 NUEVO: Método para el botón RETRY (Reiniciar Nivel)
+    public void RetryGame()
+    {
+        PlayClickSound(); // Reproduce el sonido de clic
+        // Opción A: Cargar directamente la escena del nivel (Level1)
+        StartCoroutine(LoadSceneWithDelay("Level1", 0.9f)); 
+
+        // Opción B (Alternativa dinámica): Recargar la escena en la que se encuentra actualmente
+        // string currentScene = SceneManager.GetActiveScene().name;
+        // StartCoroutine(LoadSceneWithDelay(currentScene, 0.9f));
+    }
+
+    // 🏠 NUEVO (Opcional): Método para volver al Menú Principal si agregas ese botón
+    public void GoToMainMenu()
+    {
+        PlayClickSound();
+        StartCoroutine(LoadSceneWithDelay("Menu", 0.9f)); // Cambia "MainMenu" por el nombre de tu escena de menú
+    }
+
     private IEnumerator LoadSceneWithDelay(string sceneName, float delay)
     {
         // WaitForSecondsRealtime asegura que funcione incluso si el juego está pausado
