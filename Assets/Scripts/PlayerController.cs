@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    #region Variables
+
     [Header("Movimiento")]
     public float moveSpeed = 6f;
 
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Tiempo de espera antes de poder dar OTRO golpe (Cooldown)")]
     private float attackCooldown = 0.4f;
     public LayerMask destructibleLayer;
+
+    #endregion
 
     // Esta función nos da la posición del pecho/cabeza del jugador para calcular mejor el ataque
     public Vector2 GetAttackCenter()
