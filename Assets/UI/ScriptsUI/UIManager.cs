@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
    public void PlayGame()
     {
         PlayClickSound(); // Reproduce el clic
-        StartCoroutine(LoadSceneWithDelay("Level1", 0.9f)); // Espera 0.15s y cambia de escena
+        StartCoroutine(LoadSceneWithDelay("CamiloTests", 0.9f)); // Espera 0.15s y cambia de escena
     }
 
     public void OpenTutorial()
@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public void RetryGame()
     {
         PlayClickSound(); 
-        StartCoroutine(LoadSceneWithDelay("Level1", 0.9f)); 
+        StartCoroutine(LoadSceneWithDelay("CamiloTests", 0.9f)); 
 
         // string currentScene = SceneManager.GetActiveScene().name;
         // StartCoroutine(LoadSceneWithDelay(currentScene, 0.9f));
