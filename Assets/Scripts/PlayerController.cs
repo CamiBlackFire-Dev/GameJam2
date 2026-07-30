@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movimiento")]
-    public float moveSpeed = 8f;
+    public float moveSpeed = 6f;
 
     [Header("Salto")]
-    public float jumpForce = 12f;
+    public float jumpForce = 4f;
     [Range(0f, 1f)]
     [Tooltip("Si sueltas el botón rápido, el salto se corta a la mitad")]
     public float jumpCutMultiplier = 0.5f;
@@ -30,10 +30,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Hasta dónde llega el brazo para picar cosas")]
     public float attackRange = 2f;
     [Tooltip("Subimos un poco el centro del ataque para que no salga desde los pies")]
-    public Vector2 attackOffset = new Vector2(0f, 0.5f);
-    public int attackDamage = 1;
+    private Vector2 attackOffset = new Vector2(0f, 0.5f);
+    private int attackDamage = 1;
     [Tooltip("Tiempo que tarda la animación de ataque")]
-    public float attackAnimDuration = 0.3f;
+    private float attackAnimDuration = 0.4f;
+    [Tooltip("Tiempo de espera antes de poder dar OTRO golpe (Cooldown)")]
+    private float attackCooldown = 0.4f;
     public LayerMask destructibleLayer;
 
     // Esta función nos da la posición del pecho/cabeza del jugador para calcular mejor el ataque
@@ -43,10 +45,10 @@ public class PlayerController : MonoBehaviour
     }
 
     [Header("Nombres de las animaciones")]
-    public string idleAnim = "Player_Idle";
-    public string runAnim = "Player_Run";
-    public string jumpAnim = "Player_Jump";
-    public string attackAnim = "Player_Attack";
+    private string idleAnim = "Idle";
+    private string runAnim = "Run";
+    private string jumpAnim = "Jump";
+    private string attackAnim = "Attack";
 
     // Componentes que necesitamos
     private Rigidbody2D rb;
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
     // Cosas internas que usamos para saber qué está haciendo el jugador
     private string currentState;
     private float attackTimer;
+    private float currentCooldown;
     private Vector2 moveInput;
     private bool isGrounded;
     private bool isJumping;
@@ -63,11 +66,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mejoras de jugabilidad (Game Feel)")]
     [Tooltip("Le damos un tiempito extra para saltar aunque ya se haya caído de la plataforma")]
-    public float coyoteTime = 0.15f;
+    private float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
 
     [Tooltip("Si aprietas salto justo antes de tocar el piso, el juego te lo guarda y saltas apenas tocas")]
-    public float jumpBufferTime = 0.2f;
+    private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
     private void Awake()
@@ -156,6 +159,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Camera.main == null) return;
 
+        // Si aún no ha pasado el tiempo de enfriamiento, ignoramos el clic
+        if (currentCooldown > 0f) return;
+
+        // Reiniciamos el tiempo de enfriamiento
+        currentCooldown = attackCooldown;
+
         // Arrancamos el cronómetro de la animación para que no se corte
         attackTimer = attackAnimDuration;
 
@@ -187,6 +196,12 @@ public class PlayerController : MonoBehaviour
     // El Update normal corre todo el tiempo (bueno para lógica e inputs)
     private void Update()
     {
+        // Bajamos el cronómetro del cooldown si es mayor a 0
+        if (currentCooldown > 0f)
+        {
+            currentCooldown -= Time.deltaTime;
+        }
+
         CheckGrounded();
         HandleJumpLogic();
         UpdateAnimations();
