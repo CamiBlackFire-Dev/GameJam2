@@ -43,6 +43,10 @@ public class PlayerInteraction : MonoBehaviour
                 interaction.DebrisInteraction(press);
                 print("Despejado");
                 break;
+            case "Final":
+                interaction.FinalScene();
+                print("Despejado");
+                break;
         }
     }
 
