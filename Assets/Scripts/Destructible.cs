@@ -14,7 +14,7 @@ public class Destructible : MonoBehaviour
     [Header("Visual & Audio Effects")]
     [Tooltip("Prefab de partículas a instanciar cuando el objeto se destruye (opcional).")]
     public GameObject destructionVFX;
-    
+
     [Header("Events")]
     [Tooltip("Eventos que se disparan al recibir daño (ej. reproducir un sonido de golpe).")]
     public UnityEvent OnTakeDamage;

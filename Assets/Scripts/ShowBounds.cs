@@ -9,7 +9,7 @@ public class ShowBounds : MonoBehaviour
 {
     [Tooltip("Color del borde del área.")]
     public Color boundsColor = Color.yellow;
-    
+
     [Tooltip("Dibuja también el interior del área de forma semi-transparente.")]
     public bool drawSolid = false;
 
@@ -17,11 +17,11 @@ public class ShowBounds : MonoBehaviour
     private void OnDrawGizmos()
     {
         Collider2D col = GetComponent<Collider2D>();
-        
+
         if (col != null)
         {
             Gizmos.color = boundsColor;
-            
+
             // Dibujar el contorno exterior usando el tamaño real del collider en el mundo
             Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
 

@@ -10,7 +10,7 @@ public class Crosshair : MonoBehaviour
 {
     [Tooltip("Referencia al controlador del jugador para leer su rango de ataque dinámicamente.")]
     public PlayerController playerController;
-    
+
     [Tooltip("La misma capa (Layer) que configuraste para los objetos destructibles.")]
     public LayerMask destructibleLayer;
 
@@ -33,7 +33,7 @@ public class Crosshair : MonoBehaviour
 
         // 1. Obtener la posición del ratón en la pantalla
         Vector2 mouseScreenPos = Pointer.current.position.ReadValue();
-        
+
         // 2. Comprobar si el ratón está dentro de los límites de la ventana de juego
         bool isInsideScreen = mouseScreenPos.x >= 0 && mouseScreenPos.x <= Screen.width &&
                               mouseScreenPos.y >= 0 && mouseScreenPos.y <= Screen.height;
@@ -43,12 +43,12 @@ public class Crosshair : MonoBehaviour
         spriteRenderer.enabled = isInsideScreen;
 
         // Si salimos de la ventana, no hace falta calcular físicas ni renderizado de la mira
-        if (!isInsideScreen) return; 
+        if (!isInsideScreen) return;
 
         // 3. Convertir la posición de la pantalla a coordenadas del mundo 2D
         Vector3 screenPosConZ = new Vector3(mouseScreenPos.x, mouseScreenPos.y, Mathf.Abs(Camera.main.transform.position.z));
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(screenPosConZ);
-        
+
         // Mover el sprite de la mira a la posición del ratón en el mundo
         transform.position = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
 
