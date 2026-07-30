@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement; // Necesario para gestionar el cambio de escenas
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; 
 
 public class UIManager : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class UIManager : MonoBehaviour
     [Header("Efectos de Sonido (SFX)")]
     [SerializeField] private AudioSource sfxSource; 
     [SerializeField] private AudioClip hoverSound;   
-    [SerializeField] private AudioClip clickSound;   
+    [SerializeField] private AudioClip clickSound; 
+
+    [Header("Paneles de Menú de Pausa")]
+    [SerializeField] private GameObject pauseMenuPanel; // Tu panel 'MenuPuase'
+    [SerializeField] private GameObject controlsPanel;  
     
+    private bool isPaused = false;
 
     private void Start()
     {
-        // Configurar y reproducir la música de fondo al iniciar el menú
+        
         if (audioSource != null && menuMusic != null)
         {
             audioSource.clip = menuMusic;
@@ -25,17 +31,97 @@ public class UIManager : MonoBehaviour
             audioSource.loop = true; 
             audioSource.Play();
         }
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+        ResumeGamePhysicsAndCursor();
     }
+
+    private void Update()
+    {
+        
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+           
+            if (controlsPanel != null && controlsPanel.activeSelf)
+            {
+                CloseControls();
+            }
+            else
+            {
+                TogglePause();
+            }
+        }
+    }
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f; // Congela el juego
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(true);
+
+        // Mostrar y liberar el cursor para poder usar la UI
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void ResumeGame()
+    {
+        PlayClickSound();
+        isPaused = false;
+        Time.timeScale = 1f; // Reanuda el tiempo del juego
+        
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+
+        // Volver a ocultar y bloquear el cursor para apuntar/jugar
+        Cursor.lockState = CursorLockMode.None; 
+        Cursor.visible = true;
+    }
+
+    private void ResumeGamePhysicsAndCursor()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void OpenControls()
+    {
+        PlayClickSound();
+        if (controlsPanel != null) controlsPanel.SetActive(true);
+    }
+
+    public void CloseControls()
+    {
+        PlayClickSound();
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+    }
+
    public void PlayGame()
     {
-        PlayClickSound(); // Reproduce el clic
-        StartCoroutine(LoadSceneWithDelay("CamiloTests", 0.9f)); // Espera 0.15s y cambia de escena
+        PlayClickSound(); 
+        StartCoroutine(LoadSceneWithDelay("CamiloTests", 0.9f)); 
     }
 
     public void OpenTutorial()
     {
         PlayClickSound(); // Reproduce el clic
-        StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f)); 
+        StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f));
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
     }
 
     
@@ -56,7 +142,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator LoadSceneWithDelay(string sceneName, float delay)
     {
-        // WaitForSecondsRealtime asegura que funcione incluso si el juego está pausado
+        
         yield return new WaitForSecondsRealtime(delay); 
         SceneManager.LoadScene(sceneName);
     }

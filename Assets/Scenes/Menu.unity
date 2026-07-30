@@ -546,8 +546,8 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: -1533129648171765184, guid: ad2a08fdc24208b43898c636cffd2071, type: 3}
     m_PressedSprite: {fileID: 6502073294732646763, guid: 73c7b94d439f663469ec5c5010a09670, type: 3}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 1329477470341536803, guid: a009aef94442f7b4eb9de56231467f96, type: 3}
+    m_SelectedSprite: {fileID: 6502073294732646763, guid: 73c7b94d439f663469ec5c5010a09670, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 6828526379951001537, guid: c3bfd8715e5aa4643963a031da5396cd, type: 3}
     m_PressedSprite: {fileID: 4089492417414945805, guid: 9e14b60c5565c6641b774cdf266696a3, type: 3}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 2964669702025807976, guid: ef26bb37df43fde45b1a130b7db1f060, type: 3}
+    m_SelectedSprite: {fileID: 4089492417414945805, guid: 9e14b60c5565c6641b774cdf266696a3, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1720,6 +1720,8 @@ MonoBehaviour:
   sfxSource: {fileID: 1771778418}
   hoverSound: {fileID: 8300000, guid: 85333d5f0fbb8db47b50d206a3e6f5b6, type: 3}
   clickSound: {fileID: 8300000, guid: bb61d4c3e816b6e4aa87f586b8e113d1, type: 3}
+  pauseMenuPanel: {fileID: 0}
+  controlsPanel: {fileID: 0}
 --- !u!4 &1771778417
 Transform:
   m_ObjectHideFlags: 0
