@@ -108,6 +108,8 @@ public class UIManager : MonoBehaviour
     {
         PlayClickSound();
         if (controlsPanel != null) controlsPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
     }
 
    public void PlayGame()
@@ -119,7 +121,7 @@ public class UIManager : MonoBehaviour
     public void OpenTutorial()
     {
         PlayClickSound(); // Reproduce el clic
-        StartCoroutine(LoadSceneWithDelay("Tutorial", 0.9f));
+        StartCoroutine(LoadSceneWithDelay("CamiloTests2", 0.9f));
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
     }

@@ -47,6 +47,10 @@ public class PlayerInteraction : MonoBehaviour
                 interaction.FinalScene();
                 print("Despejado");
                 break;
+            case "FinalTutorial":
+                interaction.FinalTutorial();
+                print("tutorial finalizado");
+                break;
         }
     }
 

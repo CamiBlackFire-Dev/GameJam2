@@ -1,4 +1,4 @@
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,5 +19,9 @@ public class ObjectInteraction : MonoBehaviour
     public void FinalScene()
     {
         SceneManager.LoadScene("Final");
+    }
+    public void FinalTutorial()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

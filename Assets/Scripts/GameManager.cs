@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
             timer = Mathf.RoundToInt(seconds);
             PlayTime(timer);
         }
+        
+            
     }
 
     void PlayTime(int time)
@@ -24,6 +27,9 @@ public class GameManager : MonoBehaviour
         if (time <= 0)
         {
             GameOver();
+        }
+        if(time<= 0 && actualScore<= 0  ){
+            GameOver2();
         }
     }
 
@@ -35,6 +41,10 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        print("Juego Terminado");
+        SceneManager.LoadScene("Final");
+    }
+    void GameOver2()
+    {
+        SceneManager.LoadScene("Final2");
     }
 }

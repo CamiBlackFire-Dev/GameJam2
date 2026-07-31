@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/CamiloTests.unity
     guid: 4cc7b29279bb53b4aa9debe9d785758f
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 8a94f5d37dd95ed4298574c51588c53c
+    path: Assets/Scenes/CamiloTests2.unity
+    guid: 51f3b1f0a5c8a494485cd102ee3f777a
   - enabled: 1
     path: Assets/Scenes/Final.unity
     guid: c9ea1f93a603bae469a602f20f379175
+  - enabled: 1
+    path: Assets/Scenes/Final2.unity
+    guid: c5a337f5166c6c54a86dc613dd052ebc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
