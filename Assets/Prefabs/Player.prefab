@@ -31,6 +31,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6177738590975659479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &614256128783187519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8646573259309269375}
+  - component: {fileID: 7425371116320945896}
+  m_Layer: 0
+  m_Name: Spot Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8646573259309269375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614256128783187519}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.71092814, w: 0.7032647}
+  m_LocalPosition: {x: -0.69, y: 3.27, z: 0}
+  m_LocalScale: {x: 0.4166666, y: 0.4166666, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6177738590975659479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -88.087}
+--- !u!114 &7425371116320945896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614256128783187519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
+  m_ComponentVersion: 2
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.5
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 72.66
+  m_PointLightOuterAngle: 72.66
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 3.4966443
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &816956972081340841
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,6 +129,7 @@ GameObject:
   - component: {fileID: 6152659230951309138}
   - component: {fileID: 7174093278831126814}
   - component: {fileID: 9082116966721176127}
+  - component: {fileID: 2724949109454129859}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -62,10 +147,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.1, y: 0.6, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7620231748416720987}
+  - {fileID: 8646573259309269375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5687385755154232811
@@ -212,30 +298,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6816f51ed16654bafb45e230e2ab46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 4
+  moveSpeed: 6
   jumpForce: 6
   jumpCutMultiplier: 0.5
   groundCheck: {fileID: 7620231748416720987}
   groundCheckRadius: 0.26
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attackAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  attackRange: 0.93
-  attackOffset: {x: 0, y: 0.5}
-  attackDamage: 1
-  attackAnimDuration: 0.3
+  attackRange: 4
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 512
-  idleAnim: Idle
-  runAnim: Run
-  jumpAnim: Jump
-  attackAnim: Attack
-  coyoteTime: 0.15
-  jumpBufferTime: 0.2
 --- !u!95 &9082116966721176127
 Animator:
   serializedVersion: 7
@@ -258,3 +335,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2724949109454129859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816956972081340841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df99cbb622b3214f827db8151c7c42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  isInteract: 0
+  interactionTag: 
+  pressButton: 0
+  interaction: {fileID: 0}
+  gameManager: {fileID: 0}
